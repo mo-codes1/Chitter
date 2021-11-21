@@ -12,8 +12,19 @@ class Chitter < Sinatra::Base
   end
 
   get '/peeps' do
+    p ENV
+
     @peeps = Peep.all
     erb(:view_peeps)
+  end
+
+  get '/add_peeps' do
+    erb(:add_peeps)
+  end
+
+  post '/peeps' do
+    Peep.create(message: params[:message])
+    redirect '/peeps'
   end
 
 
