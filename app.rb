@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/peep'
+require './lib/user'
+
 
 class Chitter < Sinatra::Base
 
@@ -18,6 +20,15 @@ class Chitter < Sinatra::Base
   post '/' do
     Peep.create(params[:peep_message])
     redirect '/'
+  end
+
+  get '/new_user' do
+    erb :signup
+  end
+
+  post '/new_user' do
+    User.create(params[:username], params[:email])
+    redirect('/')
   end
 
   run! if app_file == $0
