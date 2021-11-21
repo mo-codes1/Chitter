@@ -1,10 +1,19 @@
-ENV['ENVIRONMENT'] = 'test'
+ENV['RACK_ENV'] = 'test'
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
+
+RSpec.configure do |config|
+  config.before(:each) do
+    setup_test_database
+  end
+end
 
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
+require 'setup_test_database'
+require 'simplecov'
+require 'simplecov-console'
 
 Capybara.app = Chitter
 

@@ -1,0 +1,15 @@
+<h2>Chitter</h2>
+
+	<% @peeps.each do |peep| %>
+		<li>
+		<%= peep.message %>
+		<%=peep.time%>
+		</li>
+	<% end %>
+
+	<form action="/" method="post">
+		What's on your mind?:
+		<input type="text" name="peep_message">
+		<input type="submit" value="Post Peep!" />
+	</form>
+

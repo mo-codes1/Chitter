@@ -1,14 +1,21 @@
-# frozen_string_literal: true
+source 'https://rubygems.org'
 
-source "https://rubygems.org"
+ruby '3.0.2'
 
-gem 'sinatra'
-gem 'sinatra-contrib'
-gem 'rspec'
-gem 'capybara'
-gem 'webrick'
+gem 'puma'
 gem 'pg'
+gem 'activesupport'
 
-git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
+group :test do
+  gem 'rspec'
+  gem 'sinatra'
+  gem 'sinatra-contrib'
+  gem 'timecop'
+  gem 'capybara'
+  gem 'simplecov', require: false
+  gem 'simplecov-console', require: false
+end
 
-# gem "rails"
+group :development, :test do
+  gem 'rubocop', '1.20'
+end

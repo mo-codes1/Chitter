@@ -1,24 +1,16 @@
 require './lib/peep'
+require 'timecop'
+require 'active_support/all'
 
 describe Peep do
-  describe '#all' do
-    it 'returns a list of peeps' do
-      connection = PG.connect(dbname: 'chitter_test')
+	it "creates a new peep" do
+		Peep.create("Hello Chitter")
+		expect(Peep.all.first.message).to eq "Hello Chitter"
+	end
 
-      connection.exec("INSERT INTO peeps (message) VALUES ('Hello Chitter');")
-      peeps = Peep.all
-
-      expect(peeps).to include("Hello Chitter")
-    end
-  end
-
-  describe '#create' do
-    it 'adds a peep to table' do
-      Peep.create(message: 'I am happy to use you')
-
-      expect(Peep.all).to include 'I am happy to use you'
-    end
-  end
-
-
+	it "saves the time a peep was made" do
+		Timecop.freeze(Time.local(2021).to_formatted_s(:db))
+		Peep.create("Hello Chitter")
+		expect(Peep.all.first.time).to eq Time.local(2021).to_formatted_s(:db)
+	end
 end
