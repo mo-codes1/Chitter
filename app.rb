@@ -33,14 +33,17 @@ class Chitter < Sinatra::Base
 
   get '/user' do
     @peeps = Peep.all
+    @user = User.existing_user
     erb :existing_user
   end
 
   get '/login' do
+
     erb :login
   end
 
   post '/login' do
+    User.login_user(params[:username])
     redirect '/user'
   end 
 

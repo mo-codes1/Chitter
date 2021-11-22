@@ -2,7 +2,8 @@ require 'pg'
 
 class User
 
-  attr_reader :id, :username, :email
+  @@existing_user = ''
+  attr_reader :id, :username, :email, 
 
   def initialize(id, username, email)
     @id = id
@@ -30,6 +31,14 @@ class User
 		end
     query = "INSERT INTO users (username, email) VALUES ($1, $2);"
     connection.exec_params(query, [username, email])
-    
   end
+
+  def self.login_user(user)
+    User.all.select { |u| @@existing_user = u if u.username == user}
+  end
+
+  def self.existing_user
+    @@existing_user
+  end
+
 end
