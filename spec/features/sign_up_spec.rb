@@ -4,6 +4,6 @@ feature 'being able to sign up' do
     click_link "Sign Up"
     expect(page).to have_field("username")
     expect(page).to have_field("email")
-    expect(page).to have_button("Sign up")
+    expect(page).to have_button("Sign Up")
   end
 end

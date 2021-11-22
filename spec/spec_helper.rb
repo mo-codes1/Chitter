@@ -14,6 +14,7 @@ require 'rspec'
 require 'setup_test_database'
 require 'simplecov'
 require 'simplecov-console'
+require 'test_helpers'
 
 Capybara.app = Chitter
 

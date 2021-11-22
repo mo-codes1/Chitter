@@ -1,0 +1,15 @@
+<h1> Hi Mohammed you're back! Chitter's been busy while you've been away. </h1>
+
+<form action="/" method="post">
+ 		<input type="text" name="peep_message">
+ 		<input type="submit" value="Post" />
+</form>
+
+<% @peeps.each do |peep| %>
+    <li>
+      <%= peep.message %>
+      <%=peep.time%>
+
+    </li>
+
+<% end %>

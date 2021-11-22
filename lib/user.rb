@@ -17,7 +17,7 @@ class User
 			connection = PG.connect(dbname: "chitter")
 		end
     result = connection.exec("SELECT * FROM users;")
-		result.map { |user| User.new(user['id'], user['username'], user['email']) }.reverse
+		result.map { |user| User.new(user['id'], user['username'], user['email']) }
 
    
   end
